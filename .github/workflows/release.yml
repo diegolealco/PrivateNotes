@@ -32,6 +32,7 @@ jobs:
             echo "Processing $file"
             # version=$(yq r "$file" '.version')
             yq r "$file" '.version'
+          done
 
       #       if [ -n "$version" ]; then
       #         # Check if release or tag already exists
