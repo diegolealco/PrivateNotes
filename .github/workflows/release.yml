@@ -12,17 +12,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v3
       - uses: chrisdickinson/setup-yq@latest
 
       - name: Set up environment
         run: |
           METADATA_URL_BASE="https://dist.ams3.cdn.digitaloceanspaces.com"
+          echo "METADATA_URL_BASE=$METADATA_URL_BASE" >> $GITHUB_ENV
           FILES=("latest.yaml" "latest-mac.yaml" "latest-linux.yaml")
-          mkdir -p metadata
+          echo "FILES=${FILES[*]}" >> $GITHUB_ENV
 
       - name: Fetch metadata files
         run: |
-          for file in "${FILES[@]}"; do
+          for file in ${FILES[@]}; do
             curl -sSL "$METADATA_URL_BASE/$file" -o "metadata/$file"
           done
 
@@ -33,32 +35,38 @@ jobs:
             echo "Processing $file"
             version=$(yq '.version' "$file")
 
-            # Check if release or tag already exists
-            if gh release view "v$version" >/dev/null 2>&1; then
-              echo "Release for version $version already exists. Terminating."
-              exit 0
-            fi
+            if [ -n "$version" ]; then
+              # Check if release or tag already exists
+              if gh release view "v$version" >/dev/null 2>&1; then
+                echo "Release for version $version already exists. Terminating."
+                exit 1
+              fi
 
-            echo "Fetched version: $version"
-            echo "version=$version" >> $GITHUB_ENV
+              echo "version=$version" >> $GITHUB_ENV
+              break  # Use first valid version found
+            fi
           done
 
       - name: Create a tag for the fetched version
         run: |
-          version=$(echo "$GITHUB_ENV")
-          git tag "v$version"
-          git push origin "v$version"
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git tag "v${{ env.version }}"
+          git push origin "v${{ env.version }}"
 
       - name: Create a draft release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          version=$(echo "$GITHUB_ENV")
+          {
+            echo "Draft Release for version ${{ env.version }}"
+            echo
+            echo "Download Links:"
+            for file in metadata/*.yaml; do
+              url=$(yq '.files[0].url' "$file")
+              ext="$(echo "$url" | awk -F. '{print $NF}')"
+              echo "- [$ext]($METADATA_URL_BASE/$url)"
+            done
+          } > release_notes.txt
 
-          release_notes="Draft Release for version $version\n\nDownload Links:" > release_notes.txt
-
-          for file in metadata/*.yaml; do
-            url=$(yq '.files[0].url' "$file")
-            ext="$(echo "$url" | awk -F. '{print $NF}')"
-            echo "- [$ext]($METADATA_URL_BASE/$url)" >> release_notes.txt
-          done
-
-          gh release create "v$version" --draft --notes-file release_notes.txt
+          gh release create "v${{ env.version }}" --draft --notes-file release_notes.txt
