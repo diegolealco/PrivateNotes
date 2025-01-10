@@ -53,7 +53,7 @@ jobs:
             echo
             echo "Download Links:"
             for file in metadata/*.yml; do
-              urls=$(yq e '.files[].url' "$file")
+              urls=$(yq r '.files[].url' "$file")
               for url in $urls; do
                 ext="$(echo "$url" | awk -F. '{print $NF}')"
                 echo "- [$ext]($METADATA_URL_BASE/$url)"
