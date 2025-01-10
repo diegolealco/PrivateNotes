@@ -31,7 +31,7 @@ jobs:
           for file in metadata/*.yaml; do
             echo "Processing $file"
             # version=$(yq '.version' "$file")
-            yq '.version' "$file"
+            yq -h
 
             if [ -n "$version" ]; then
               # Check if release or tag already exists
