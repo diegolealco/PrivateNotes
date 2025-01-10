@@ -15,6 +15,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -x
           # Set up environment
           METADATA_URL_BASE="https://dist.ams3.cdn.digitaloceanspaces.com"
           FILES=("latest.yml" "latest-mac.yml" "latest-linux.yml")
