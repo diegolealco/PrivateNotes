@@ -12,9 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Install yq
-        run: |
-          sudo apt-get update && sudo apt-get install -y yq
+      - uses: chrisdickinson/setup-yq@latest
 
       - name: Set up environment
         run: |
