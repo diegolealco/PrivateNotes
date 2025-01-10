@@ -30,40 +30,41 @@ jobs:
         run: |
           for file in metadata/*.yml; do
             echo "Processing $file"
-            version=$(yq r "$file" '.version')
+            # version=$(yq r "$file" '.version')
+            yq r "$file" '.version'
 
-            if [ -n "$version" ]; then
-              # Check if release or tag already exists
-              if gh release view "v$version" >/dev/null 2>&1; then
-                echo "Release for version $version already exists. Terminating."
-                exit 1
-              fi
+      #       if [ -n "$version" ]; then
+      #         # Check if release or tag already exists
+      #         if gh release view "v$version" >/dev/null 2>&1; then
+      #           echo "Release for version $version already exists. Terminating."
+      #           exit 1
+      #         fi
 
-              echo "version=$version" >> $GITHUB_ENV
-              break  # Use first valid version found
-            fi
-          done
+      #         echo "version=$version" >> $GITHUB_ENV
+      #         break  # Use first valid version found
+      #       fi
+      #     done
 
-      - name: Create a tag for the fetched version
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git tag "v${{ env.version }}"
-          git push origin "v${{ env.version }}"
+      # - name: Create a tag for the fetched version
+      #   run: |
+      #     git config --global user.email "github-actions@github.com"
+      #     git config --global user.name "GitHub Actions"
+      #     git tag "v${{ env.version }}"
+      #     git push origin "v${{ env.version }}"
 
-      - name: Create a draft release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          {
-            echo "Draft Release for version ${{ env.version }}"
-            echo
-            echo "Download Links:"
-            for file in metadata/*.yml; do
-              url=$(yq r "$file" '.files[0].url')
-              ext="$(echo "$url" | awk -F. '{print $NF}')"
-              echo "- [$ext]($METADATA_URL_BASE/$url)"
-            done
-          } > release_notes.txt
+      # - name: Create a draft release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     {
+      #       echo "Draft Release for version ${{ env.version }}"
+      #       echo
+      #       echo "Download Links:"
+      #       for file in metadata/*.yml; do
+      #         url=$(yq r "$file" '.files[0].url')
+      #         ext="$(echo "$url" | awk -F. '{print $NF}')"
+      #         echo "- [$ext]($METADATA_URL_BASE/$url)"
+      #       done
+      #     } > release_notes.txt
 
-          gh release create "v${{ env.version }}" --draft --notes-file release_notes.txt
+      #     gh release create "v${{ env.version }}" --draft --notes-file release_notes.txt
