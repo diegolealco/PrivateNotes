@@ -1,0 +1,66 @@
+name: Publish Release from Metadata
+
+on:
+  workflow_dispatch:
+    inputs:
+      trigger:
+        description: "Manually trigger the workflow"
+        required: false
+
+jobs:
+  fetch-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install yq
+        run: |
+          sudo apt-get update && sudo apt-get install -y yq
+
+      - name: Set up environment
+        run: |
+          METADATA_URL_BASE="https://dist.ams3.cdn.digitaloceanspaces.com"
+          FILES=("latest.yaml" "latest-mac.yaml" "latest-linux.yaml")
+          mkdir -p metadata
+
+      - name: Fetch metadata files
+        run: |
+          for file in "${FILES[@]}"; do
+            curl -sSL "$METADATA_URL_BASE/$file" -o "metadata/$file"
+          done
+
+      - name: Parse metadata and check for existing release
+        id: parse-metadata
+        run: |
+          for file in metadata/*.yaml; do
+            echo "Processing $file"
+            version=$(yq '.version' "$file")
+
+            # Check if release or tag already exists
+            if gh release view "v$version" >/dev/null 2>&1; then
+              echo "Release for version $version already exists. Terminating."
+              exit 0
+            fi
+
+            echo "Fetched version: $version"
+            echo "version=$version" >> $GITHUB_ENV
+          done
+
+      - name: Create a tag for the fetched version
+        run: |
+          version=$(echo "$GITHUB_ENV")
+          git tag "v$version"
+          git push origin "v$version"
+
+      - name: Create a draft release
+        run: |
+          version=$(echo "$GITHUB_ENV")
+
+          release_notes="Draft Release for version $version\n\nDownload Links:" > release_notes.txt
+
+          for file in metadata/*.yaml; do
+            url=$(yq '.files[0].url' "$file")
+            ext="$(echo "$url" | awk -F. '{print $NF}')"
+            echo "- [$ext]($METADATA_URL_BASE/$url)" >> release_notes.txt
+          done
+
+          gh release create "v$version" --draft --notes-file release_notes.txt
