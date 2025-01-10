@@ -30,8 +30,7 @@ jobs:
         run: |
           for file in metadata/*.yaml; do
             echo "Processing $file"
-            # version=$(yq '.version' "$file")
-            yq -h
+            version=$(yq r "$file" '.version')
 
             if [ -n "$version" ]; then
               # Check if release or tag already exists
@@ -45,26 +44,26 @@ jobs:
             fi
           done
 
-      # - name: Create a tag for the fetched version
-      #   run: |
-      #     git config --global user.email "github-actions@github.com"
-      #     git config --global user.name "GitHub Actions"
-      #     git tag "v${{ env.version }}"
-      #     git push origin "v${{ env.version }}"
+      - name: Create a tag for the fetched version
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git tag "v${{ env.version }}"
+          git push origin "v${{ env.version }}"
 
-      # - name: Create a draft release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: |
-      #     {
-      #       echo "Draft Release for version ${{ env.version }}"
-      #       echo
-      #       echo "Download Links:"
-      #       for file in metadata/*.yaml; do
-      #         url=$(yq '.files[0].url' "$file")
-      #         ext="$(echo "$url" | awk -F. '{print $NF}')"
-      #         echo "- [$ext]($METADATA_URL_BASE/$url)"
-      #       done
-      #     } > release_notes.txt
+      - name: Create a draft release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo "Draft Release for version ${{ env.version }}"
+            echo
+            echo "Download Links:"
+            for file in metadata/*.yaml; do
+              url=$(yq r "$file" '.files[0].url')
+              ext="$(echo "$url" | awk -F. '{print $NF}')"
+              echo "- [$ext]($METADATA_URL_BASE/$url)"
+            done
+          } > release_notes.txt
 
-      #     gh release create "v${{ env.version }}" --draft --notes-file release_notes.txt
+          gh release create "v${{ env.version }}" --draft --notes-file release_notes.txt
