@@ -21,6 +21,7 @@ jobs:
           echo "METADATA_URL_BASE=$METADATA_URL_BASE" >> $GITHUB_ENV
           FILES=("latest.yaml" "latest-mac.yaml" "latest-linux.yaml")
           echo "FILES=${FILES[*]}" >> $GITHUB_ENV
+          mkdir -p metadata
 
       - name: Fetch metadata files
         run: |
