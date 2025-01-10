@@ -2,10 +2,6 @@ name: Publish Release from Metadata
 
 on:
   workflow_dispatch:
-    inputs:
-      trigger:
-        description: "Manually trigger the workflow"
-        required: false
 
 jobs:
   fetch-and-publish:
