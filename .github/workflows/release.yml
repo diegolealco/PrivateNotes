@@ -15,7 +15,7 @@ jobs:
         run: |
           METADATA_URL_BASE="https://dist.ams3.cdn.digitaloceanspaces.com"
           echo "METADATA_URL_BASE=$METADATA_URL_BASE" >> $GITHUB_ENV
-          FILES=("latest.yaml" "latest-mac.yaml" "latest-linux.yaml")
+          FILES=("latest.yml" "latest-mac.yml" "latest-linux.yml")
           echo "FILES=${FILES[*]}" >> $GITHUB_ENV
           mkdir -p metadata
 
@@ -28,7 +28,7 @@ jobs:
       - name: Parse metadata and check for existing release
         id: parse-metadata
         run: |
-          for file in metadata/*.yaml; do
+          for file in metadata/*.yml; do
             echo "Processing $file"
             version=$(yq r "$file" '.version')
 
@@ -59,7 +59,7 @@ jobs:
             echo "Draft Release for version ${{ env.version }}"
             echo
             echo "Download Links:"
-            for file in metadata/*.yaml; do
+            for file in metadata/*.yml; do
               url=$(yq r "$file" '.files[0].url')
               ext="$(echo "$url" | awk -F. '{print $NF}')"
               echo "- [$ext]($METADATA_URL_BASE/$url)"
