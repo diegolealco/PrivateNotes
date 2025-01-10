@@ -31,6 +31,7 @@ jobs:
           for file in metadata/*.yml; do
             echo "Processing $file"
             # version=$(yq r "$file" '.version')
+            cat "$file"
             yq r "$file" '.version'
           done
 
