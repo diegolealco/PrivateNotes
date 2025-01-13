@@ -4,7 +4,7 @@
   </a>
   <h2>Exocortex</h2>
   <p>
-    AES-GCM Encryption | Privacy-First Design | Backlinks | Interactive Graph Interface | Markdown and WYSIWYG Editing | Syntax Highlighting | Local-First with No Cloud Reliance | Cross-Platform (macOS, Windows, Linux) | Customisable Themes | Encrypted Portability | Organised Idea Management | Regular Updates and More!
+    AES-GCM + PBKDF2 Encryption | Markdown and WYSIWYG Editor | Back-Linking | Network Graph | Mind Mapping | Syntax Highlighting | Local-First (No Cloud Reliance) | Cross-Platform (macOS, Windows, Linux) | Organised Idea Management
   </p>
   <div align="center">
     <a href="https://github.com/diegolealco/Exocortex/releases">
@@ -13,7 +13,7 @@
     <a href="https://github.com/diegolealco/Exocortex/releases">
       <img src="https://img.shields.io/github/release/diegolealco/Exocortex.svg?style=flat&color=blue&include_prereleases&logo=github" alt="latest version"/>
     </a>
-        <a href="https://github.com/diegolealco/Exocortex/releases">
+        <a href="https://snapcraft.io/exocortex">
       <img src="https://img.shields.io/snapcraft/last-update/exocortex/latest/stable?color=blue&logo=snapcraft" alt="Snapscraft"/>
     </a>
   </div>
@@ -27,15 +27,14 @@ Exocortex is a personal knowledge management tool for thinkers, creators, and or
 
 ## Key Features
 
-- **Privacy-first**: Your data is fully encrypted using AES-GCM 256-bit encryption, ensuring complete security.
+- **Privacy-first**: Your data is fully encrypted using AES-GCM 256-bit encryption.
 - **Secure Note-Taking**: Keep your thoughts and ideas private with local storage and no cloud reliance.
 - **Rich Formatting**: Use markdown and syntax highlighting for well-structured and beautiful notes.
 - **Backlinks**: Create relationships between notes to mimic your natural thought process.
 - **Powerful Node Graph**: Visualise your ideas and their connections in an intuitive, interactive graph view.
-- **Cross-Platform**: Available on macOS, Windows, and Linux, so you can work wherever you need.
+- **Cross-Platform**: Available on macOS, Windows, and Linux.
 - **Customisable Themes**: Personalise your workspace with a selection of pre-made themes.
 - **Offline Access**: Work without an internet connection, keeping your data on your device.
-- **Lightweight Design**: Exocortex is efficient and fast, avoiding unnecessary bloat.
 - **Regular Updates**: Continuous improvements and new features keep Exocortex evolving to meet your needs.
 
 ## **Who is Exocortex For?**
@@ -45,7 +44,7 @@ Exocortex is a personal knowledge management tool for thinkers, creators, and or
 - **Philosophy Students and Researchers**: Map philosophical arguments, concepts, and thinkers.
   _Example_: Link Aristotle → Kant → Nietzsche with backlinked notes summarising key ideas.
 - **Genealogists**: Build secure, portable family trees with rich notes.
-  _Example_: A multigenerational family tree connected to historical events.
+  _Example_: A multi-generational family tree connected to historical events.
 - **Thesis Writers**: Organise and link chapters, references, and research.
   _Example_: A thesis framework graph connecting chapters to sources and inline notes.
 
@@ -60,7 +59,7 @@ Exocortex is a personal knowledge management tool for thinkers, creators, and or
 
 ### Creative Communities
 
-- **Worldbuilders (Fiction Writers or RPG Creators)**: Organise lore, maps, and character connections.
+- **World builders (Fiction Writers or RPG Creators)**: Organise lore, maps, and character connections.
   _Example_: A fantasy world graph linking kingdoms, characters, and histories.
 - **Songwriters**: Brainstorm lyrics and track themes.
   _Example_: A graph connecting lyrics, themes, and inspirations.
@@ -72,8 +71,8 @@ Exocortex is a personal knowledge management tool for thinkers, creators, and or
 - **Tabletop RPG Dungeon Masters**: Create campaigns with linked storylines, NPCs, and maps.
   _Example_: A campaign graph with notes on NPCs, events, and settings.
 - **Warhammer 40K Lore Enthusiasts**: Organise factions, characters, and events into a lore map.
-  _Example_: A graph connecting factions, subfactions, and key events.
-- **Board Game Designers**: Map mechanics, playtesting notes, and game lore.
+  _Example_: A graph connecting factions, sub-factions, and key events.
+- **Board Game Designers**: Map mechanics, play-testing notes, and game lore.
   _Example_: A graph linking mechanics, themes, and iteration notes.
 
 ### Technology Communities
@@ -87,7 +86,7 @@ Exocortex is a personal knowledge management tool for thinkers, creators, and or
 
 ### Self-Improvement Communities
 
-- **Bullet Journalers**: Create a digital bullet journal with secure, linked entries.
+- **Bullet Journal**: Create a digital bullet journal with secure, linked entries.
   _Example_: A graph of journal themes (e.g., habits, goals) with progress notes.
 - **ADHD Productivity Enthusiasts**: Organise tasks and thoughts into a visual graph.
   _Example_: Manage daily tasks and priorities with interconnected nodes.
@@ -96,9 +95,9 @@ Exocortex is a personal knowledge management tool for thinkers, creators, and or
 
 ### Gaming Communities
 
-- **Esports Strategists**: Organise game strategies and tactics visually.
-  _Example_: A graph mapping strategies for a specific game with counterplay notes.
-- **Modders (e.g., Skyrim, Minecraft)**: Organise mods, dependencies, and documentation.
+- **eSports Strategists**: Organise game strategies and tactics visually.
+  _Example_: A graph mapping strategies for a specific game with counter-play notes.
+- **Modders (e.g. Skyrim, Minecraft)**: Organise mods, dependencies, and documentation.
   _Example_: A graph linking mods to dependencies with markdown descriptions.
 - **Lore Archivists**: Catalogue lore for expansive universes (e.g., Elder Scrolls, Fallout).
   _Example_: A graph mapping interconnected lore pieces.
@@ -112,35 +111,17 @@ Exocortex is a personal knowledge management tool for thinkers, creators, and or
 - **Environmentalists**: Map ecosystems and projects.
   _Example_: A graph showing interconnected ecosystems with notes on outcomes.
 
-## **Licensing Information**
-
-Exocortex is completely free to use with no limitations or locked features.
-To support development and remove occasional support-us popups, purchase a **Supporter Code** for $50 USD per year.
-
-[Purchase a Supporter License](#)
-
 ## **How to Install**
 
-### Download Links
-
-- macOS: [Download](#)
-- Windows: [Download](#)
-- Linux: [Download](#)
-
-### Installation Steps
-
-1. Download the installer for your operating system.
+1. Head over to [getexocortex.com](https://getexocortex.com) and download the installer for your operating system.
 2. Run the installer and follow the prompts.
 3. Launch Exocortex and start building your networked thoughts!
 
-Need help? Visit our [Troubleshooting Guide](#).
+Need help? Check out our [Discussions](https://github.com/diegolealco/Exocortex/discussions), [Issue Tracker](https://github.com/diegolealco/Exocortex/issues), or get in touch via [Twitter](https://twitter.com/exocortexapp) or send a quick email at `support@getexocortex.com`.
 
-## **Support and Community**
+## **Licensing Information**
 
-Exocortex thrives on your support. If you enjoy using it, consider making a donation or purchasing a Supporter License. Every contribution helps improve the app and keep it free for everyone.
+Exocortex is completely free to use with no limitations or locked features.
+To support development and remove occasional support-us popups, purchase a **Supporter Code** for $25 USD per year.
 
-### Community Links
-
-- Join discussions on Discord
-- Follow us on Twitter
-- Share your Exocortex use cases
+[Purchase a Supporter License](#)
