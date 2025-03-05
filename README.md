@@ -1,6 +1,6 @@
 <div align="center">
 <a href="https://privatenotes.pro"><img src="./assets/icon.png" width="280" alt="PrivateNotes" align="center"/></a>
-<h1>PrivateNotes.pro</h1>
+<h1>PrivateNotes</h1>
 <p>AES-GCM + PBKDF2 Encryption | Markdown and WYSIWYG Editor | Backlinking | Network Graph | Mind Mapping | Syntax Highlighting | Local-First (No Cloud Reliance) | Cross-Platform (macOS, Windows, Linux) | Organised Idea Management</p>
 <div align="center">
 <a href="https://privatenotes.pro"><img src="https://img.shields.io/badge/download%20now-orange?style=for-the-badge" alt="Download Now"/></a>
@@ -8,11 +8,11 @@
 </div>
 </div>
 
-## **About PrivateNotes.pro (Formerly Exocortex)**
+## **About PrivateNotes (Formerly Exocortex)**
 
-PrivateNotes.pro is a personal knowledge management tool for thinkers, creators, and organisers. Designed to mimic how your mind works, it lets you connect ideas into a network of thought—securely and privately. With cross-platform compatibility and industry-standard encryption, it’s perfect for making sense of complexity.
+PrivateNotes is a personal knowledge management tool for thinkers, creators, and organisers. Designed to mimic how your mind works, it lets you connect ideas into a network of thought—securely and privately. With cross-platform compatibility and industry-standard encryption, it’s perfect for making sense of complexity.
 
-![Screenshot of PrivateNotes.pro interface demonstrating node-based thinking.](./assets/screenshot.png)
+![Screenshot of PrivateNotes interface demonstrating node-based thinking.](./assets/screenshot.png)
 
 ## Key Features
 
@@ -24,9 +24,9 @@ PrivateNotes.pro is a personal knowledge management tool for thinkers, creators,
 - **Cross-Platform**: Available on macOS, Windows, and Linux.
 - **Customisable Themes**: Personalise your workspace with a selection of pre-made themes.
 - **Offline Access**: Work without an internet connection, keeping your data on your device.
-- **Regular Updates**: Continuous improvements and new features keep PrivateNotes.pro evolving to meet your needs.
+- **Regular Updates**: Continuous improvements and new features keep PrivateNotes evolving to meet your needs.
 
-## **Who is PrivateNotes.pro For?**
+## **Who is PrivateNotes For?**
 
 ### Academic and Research Communities
 
